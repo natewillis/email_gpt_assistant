@@ -4,7 +4,10 @@ from dotenv import load_dotenv
 
 
 from email_gpt import process_request
-load_dotenv()
+# Load environment variables
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, '.env')
+load_dotenv(dotenv_path=env_path)
 
 class TestEmailGPT(unittest.TestCase):
     def test_process_request_coding_question(self):

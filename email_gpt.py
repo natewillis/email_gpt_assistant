@@ -8,11 +8,12 @@ from google_interaction import get_calendar_events
 import os
 
 # Load environment variables
-load_dotenv()
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, '.env')
+load_dotenv(dotenv_path=env_path)
 
 # Load environment variables
 VALID_SENDERS = os.getenv('VALID_SENDERS').split(",")
-print(VALID_SENDERS)
 
 def process_request(email_address, subject, email_body):
     
@@ -36,7 +37,6 @@ def main():
     create_database()
 
     while True:
-        try:
 
             # logging
             log_message('Checking Email...')
@@ -48,9 +48,6 @@ def main():
             for email_ai_request in email_ai_requests:
                 process_request(email_ai_request['email_address'], email_ai_request['subject'], email_ai_request['body'])
 
-        except Exception as e:
-            log_message(f"An error occurred: {e}")
-        finally:
             time.sleep(60)
 
 if __name__ == "__main__":

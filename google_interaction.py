@@ -8,7 +8,9 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, '.env')
+load_dotenv(dotenv_path=env_path)
 
 # Scopes define what part of the user's account the application can access
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']

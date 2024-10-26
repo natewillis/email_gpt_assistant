@@ -7,8 +7,12 @@ from email.utils import parseaddr
 from email import policy
 from utilties import log_message
 import os
+from dotenv import load_dotenv
 
 # Load environment variables
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, '.env')
+load_dotenv(dotenv_path=env_path)
 EMAIL_ACCOUNT = os.getenv('EMAIL_ACCOUNT')
 EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 IMAP_SERVER = 'imap.zoho.com'
